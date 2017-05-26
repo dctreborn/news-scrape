@@ -4,12 +4,13 @@ module.exports = function(app) {
         request("http://reddit.com", function(error, resp, html) {
             var $ = cheerio.load(html);
 
-            $("p .title").each(function(i, element) {
-                var result = {};
+            var result = {};
 
-                //change this after reading output
-                result.title = $(this).children("a").text();
-                result.link = $(this).children("a").attr("href");
+            $("p .title").each(function(i, element) {
+
+                //get title and link
+                result.title = $(this).text();
+                result.link = $(element).children().attr("href");
 
                 var entry = new Article(result);
 
