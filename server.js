@@ -15,7 +15,7 @@ var app = express();
 
 //handlebars
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
-app.ser("view engine", "handlebars");
+app.set("view engine", "handlebars");
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
