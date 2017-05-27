@@ -22,7 +22,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("./public"));
 
 //mongoose bd config
-mongoose.connect("mongodb://localhost/news-scraper");
+mongoose.connect("mongodb://heroku_gd74mtjd:llgqohpn2pqd8dh4dbc4qrg63e@ds155811.mlab.com:55811/heroku_gd74mtjd");
 var db = mongoose.connection;
 
 //show mongoose errors
