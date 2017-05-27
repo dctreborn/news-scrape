@@ -51,7 +51,7 @@ module.exports = function(app) {
     //get article by ID
     app.get("/articles/:id", function(req, res) {
         Article.findOne({
-                _id: req.params.id
+                "_id": req.params.id
             })
             .populate("note")
             .exec(function(err, doc) {
@@ -66,15 +66,17 @@ module.exports = function(app) {
     //create new note or replaces existing note
     app.post("/articles/:id", function(req, res) {
         var newNote = new Note(req.body);
+        console.log("response");
+        console.log(req.params);
 
         newNote.save(function(err, data) {
             if (err) {
                 console.log(err);
             } else {
                 Article.findOneAndUpdate({
-                        _id: req.params.id
+                        "_id": req.params.id
                     }, {
-                        note: data._id
+                        "note": data._id
                     })
                     .exec(function(err, doc) {
                         if (err) {

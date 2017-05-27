@@ -7,8 +7,8 @@ $.getJSON("/articles", function(data){
 		var item = data[i];
 
 		p.attr("data-id", item._id);
-		p.append(item.title + "<br/>");
-		p.append(item.link);
+		p.append("<b>Title:</b> <i>" + item.title + "</i> <br/>");
+		p.append("<b>Link:</b> " + item.link + "<br/> <hr>");
 
 		$("#articles").append(p);
 	}
@@ -30,7 +30,7 @@ $(document).on("click", "p", function(){
 		//article title
 		$("#notes").append("<h2>" + data.title + "</h2>");
 		//note title
-		$("#notes").append("<input id='titleinput' name='title'>");
+		$("#notes").append("<input id='titleinput' name='title' value='title'>");
 		//text area
 		$("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
 		//submit button
@@ -64,6 +64,6 @@ $(document).on("click", "#savenote", function(){
 	});
 
 	//removes title and input after posting
-	$("#titleinput").val("");
+	$("#titleinput").val("title");
 	$("#bodyinput").val("");
 });
