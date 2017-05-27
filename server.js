@@ -2,13 +2,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var request = require("request");
-var cheerio = require("cheerio");
 var exphbs = require("express-handlebars");
 
-//models
-
-//
 mongoose.Promise = Promise;
 
 var app = express();

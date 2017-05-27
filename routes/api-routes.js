@@ -1,12 +1,17 @@
+var Article = require("./../models/Article.js");
+var Note = require("./../models/Note.js");
+var request = require("request");
+var cheerio = require("cheerio");
+
 module.exports = function(app) {
     //scrape website
-    app.get("/scrape", function(res, res) {
+    app.get("/scrape", function(req, res) {
         request("http://reddit.com", function(error, resp, html) {
-            var $ = cheerio.load(html);
-
-            var result = {};
+            var $ = cheerio.load(html);            
 
             $("p .title").each(function(i, element) {
+
+                var result = {};
 
                 //get title and link
                 result.title = $(this).text();
@@ -53,7 +58,7 @@ module.exports = function(app) {
             })
     });
 
-    //create new note or replacec existing note
+    //create new note or replaces existing note
     app.post("/articles/:id", function(req, res) {
         var newNote = new Note(req.body);
 
