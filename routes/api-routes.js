@@ -4,6 +4,11 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 module.exports = function(app) {
+    //index display
+    app.get("/", function(req, res){
+        res.render("index");
+    });
+
     //scrape website
     app.get("/scrape", function(req, res) {
         request("http://reddit.com", function(error, resp, html) {
