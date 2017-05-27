@@ -9,7 +9,7 @@ module.exports = function(app) {
         request("http://reddit.com", function(error, resp, html) {
             var $ = cheerio.load(html);            
 
-            $("p .title").each(function(i, element) {
+            $("p.title").each(function(i, element) {
 
                 var result = {};
 
@@ -69,13 +69,13 @@ module.exports = function(app) {
                 Article.findOneAndUpdate({
                         _id: req.params.id
                     }, {
-                        note: doc._id
+                        note: data._id
                     })
-                    .exec(function(err, data) {
+                    .exec(function(err, doc) {
                         if (err) {
                             console.log(err);
                         } else {
-                            res.send(data);
+                            res.send(doc);
                         }
                     });
             }
