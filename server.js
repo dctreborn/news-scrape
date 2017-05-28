@@ -22,10 +22,10 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("./public"));
 
 // Database configuration with mongoose
-if(process.env.NODE_ENV==="production"){
+if(process.env.NODE_ENV=="production"){
   mongoose.connect(process.env.MONGODB_URI);
 } else  {
-  mongoose.connect("mongodb://localhost/week18HW");
+  mongoose.connect("mongodb://localhost/news-scraper");
 }
 
 var db = mongoose.connection;
