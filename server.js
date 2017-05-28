@@ -21,8 +21,13 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Static directory
 app.use(express.static("./public"));
 
-//mongoose bd config
-mongoose.connect("mongodb://heroku_gd74mtjd:llgqohpn2pqd8dh4dbc4qrg63e@ds155811.mlab.com:55811/heroku_gd74mtjd");
+// Database configuration with mongoose
+if(process.env.NODE_ENV==="production"){
+  mongoose.connect(process.env.MONGODB_URI);
+} else  {
+  mongoose.connect("mongodb://localhost/week18HW");
+}
+
 var db = mongoose.connection;
 
 //show mongoose errors
