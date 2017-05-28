@@ -66,8 +66,6 @@ module.exports = function(app) {
     //create new note or replaces existing note
     app.post("/articles/:id", function(req, res) {
         var newNote = new Note(req.body);
-        console.log("response");
-        console.log(req.params);
 
         newNote.save(function(err, data) {
             if (err) {
