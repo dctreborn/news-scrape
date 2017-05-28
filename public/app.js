@@ -2,6 +2,7 @@
 $(document).on("click", "#get-articles", function() {
     $.getJSON("/articles", function(data) {
         $("#saved-notes").empty()
+        $("#articles").empty()
         for (var i = 0; i < data.length; i++) {
             //for each article
             var p = $("<p>");
@@ -20,6 +21,7 @@ $(document).on("click", "#get-articles", function() {
 $(document).on("click", "#get-notes", function() {
     $.getJSON("/notes", function(data) {
         $("#articles").empty()
+        $("#saved-notes").empty()
         for (var i = 0; i < data.length; i++) {
             //for each article
             var p = $("<p>");
@@ -92,7 +94,7 @@ $(document).on("click", "#get-notes", function() {
 
 //working block
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", "#articles p", function() {
     // Empty the notes from the note section
     $("#notes").empty();
     // Save the id from the p tag
@@ -125,6 +127,33 @@ $(document).on("click", "p", function() {
         });
 });
 
+$(document).on("click", "#saved-notes p", function() {
+    // Empty the notes from the note section
+    $("#notes").empty();
+    // Save the id from the p tag
+    var thisId = $(this).attr("data-id");
+    // Now make an ajax call for the Article
+    $.ajax({
+            method: "GET",
+            url: "/notes/" + thisId
+        })
+        // With that done, add the note information to the page
+        .done(function(data) {
+            var button = $("<button>");
+            button.attr("data-id", thisId);
+            button.attr("id", "delete-note");
+            button.append("Delete Note")
+
+            var h2 = $("<h2>");
+            h2.append(data.title);
+
+            var p = $("<p>");
+            p.append(data.body);
+
+            $("#notes").append(h2, p, button);
+        });
+});
+
 // When you click the savenote button
 $(document).on("click", "#savenote", function() {
     // Grab the id associated with the article from the submit button
@@ -152,4 +181,18 @@ $(document).on("click", "#savenote", function() {
     // Also, remove the values entered in the input and textarea for note entry
     $("#titleinput").val("");
     $("#bodyinput").val("");
+});
+
+//delete note
+$(document).on("click", "#delete-note", function() {
+    var thisId = $(this).attr("data-id");
+    console.log(thisId);
+
+    $.ajax({
+        method: "GET",
+        url: "/deleteNotes/" + thisId
+    }).done(function(data) {
+        $("#notes").empty();
+        $("#notes").html("DELETED!");
+    });
 });
