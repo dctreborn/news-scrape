@@ -1,9 +1,10 @@
  body { background-color: #F2F6D0 }
 
-#articles {
+#articles, #saved-notes {
   display: inline-block;
   overflow: auto;
-  height: 700px;
+  width: 100%;
+  height: 100%;
 }
 
 #notes {

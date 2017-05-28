@@ -63,6 +63,33 @@ module.exports = function(app) {
             })
     });
 
+    //get notes
+    app.get("/notes/", function(req, res) {
+        Note.find({}, function(err, doc) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(doc);
+            }
+        });
+    });    
+
+
+    //get notes
+    app.get("/notes/:id", function(req, res) {
+        Note.findOne({
+                "_id": req.params.id
+            })
+            .populate("note")
+            .exec(function(err, doc) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.json(doc);
+                }
+            })
+    });    
+
     //create new note or replaces existing note
     app.post("/articles/:id", function(req, res) {
         var newNote = new Note(req.body);
