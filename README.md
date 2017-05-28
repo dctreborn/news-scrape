@@ -1,7 +1,23 @@
 # news-scrape
+![sample image](http://i.imgur.com/Pju8Amr.png)
 
-In case homework is not deployed, npm install dependencies in node and open the site on localhost:3000. Also make sure the mongo connection is running.
+If the project is not deployed, there may be technical issues preventing the page to show up. These are in progress of being fixed.
 
-Main page may not work due to difficulties of working with handlebars and displaying the required information.
+In the meantime, please do the following to test the project:
 
-Scraping via /scrape, and looking at all articles with /articles should work. Posting cannot be done without the main page and may be in progress.
+* clone the repo
+* "npm install" dependencies in node
+* make sure mongo connection is running via "mongod"
+* run "node server"
+* set browser to "localhost:3000"
+
+# Usage
+Type /scrape after the url to scrape the front page of reddit.
+
+Click on the Articles button to get all stored articles with the most recent entry on top.
+
+Click on an article to write notes about it.
+
+Click on Notes to get all stored notes.
+
+Clicking on a note will allow it to be deleted.
