@@ -1,4 +1,6 @@
 # news-scrape
+https://infinite-brook-41005.herokuapp.com/
+
 ![sample image](http://i.imgur.com/Pju8Amr.png)
 
 If the project is not deployed, there may be technical issues preventing the page to show up. These are in progress of being fixed.
